@@ -27,7 +27,7 @@ $custom_stats = get_post_meta( $post->ID, '_wpcm_custom_player_stats', true ); ?
 			<?php
 			foreach( $stats_labels as $key => $val ) { 
 
-				if( get_option( 'wpcm_show_stats_' . $key ) == 'yes' && array_key_exists( $key, $custom_stats ) ) { ?>
+				if(  is_array($atts)  && get_option( 'wpcm_show_stats_' . $key ) == 'yes' && array_key_exists( $key, $custom_stats ) ) { ?>
 
 					<th><?php echo $val; ?></th>
 
@@ -43,7 +43,7 @@ $custom_stats = get_post_meta( $post->ID, '_wpcm_custom_player_stats', true ); ?
 
 				if( $key == 'appearances' ) {
 
-					if( get_option( 'wpcm_show_stats_appearances' ) == 'yes' && array_key_exists( 'appearances', $custom_stats ) ) { 
+					if(   is_array($atts)  && get_option( 'wpcm_show_stats_appearances' ) == 'yes' && array_key_exists( 'appearances', $custom_stats ) ) { 
 
 						if( get_option( 'wpcm_show_stats_subs' ) == 'yes' ) { 
 							$subs = get_player_subs_total( $post->ID, $season, $team );
@@ -65,7 +65,7 @@ $custom_stats = get_post_meta( $post->ID, '_wpcm_custom_player_stats', true ); ?
 					$apps = get_wpcm_stats_value( $stats, 'total', 'appearances' );
 					$avrating = wpcm_divide( $rating, $apps );
 
-					if( get_option( 'wpcm_show_stats_rating' ) == 'yes' && array_key_exists( 'rating', $custom_stats ) ) { ?>
+					if(   is_array($atts)  &&  get_option( 'wpcm_show_stats_rating' ) == 'yes' && array_key_exists( 'rating', $custom_stats ) ) { ?>
 				
 						<td><span data-index="rating"><?php echo sprintf( "%01.2f", round($avrating, 2) ); ?></span></td>
 
@@ -74,7 +74,7 @@ $custom_stats = get_post_meta( $post->ID, '_wpcm_custom_player_stats', true ); ?
 
 				} else { 
 
-					if( get_option( 'wpcm_show_stats_' . $key ) == 'yes' && array_key_exists( $key, $custom_stats ) ) { ?>
+					if(   is_array($atts)  && get_option( 'wpcm_show_stats_' . $key ) == 'yes' && array_key_exists( $key, $custom_stats ) ) { ?>
 
 						<td><span data-index="<?php echo $key; ?>"><?php wpcm_stats_value( $stats, 'total', $key ); ?></span></td>
 						
